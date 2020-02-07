@@ -15,7 +15,7 @@ class SecretCode {
 
     protected function decode (string $encoded) : string {
 
-        $parsed = $this->parse ($encoded, ['->', '+', '-']);
+        $parsed = $this->parse ($encoded);
 
         $encodedChars = preg_split ('//u', $encoded, -1, PREG_SPLIT_NO_EMPTY);
         $encodedCharsLength = count ($encodedChars);
@@ -37,8 +37,9 @@ class SecretCode {
         return $decoded;
     }
 
-    protected function parse (string $encoded, array $commands) : array {
+    protected function parse (string $encoded) : array {
 
+        $commands = ['->', '+', '-'];
         $parsed = [];
 
         foreach ($commands as $command) {
